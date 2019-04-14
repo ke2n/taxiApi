@@ -52,16 +52,16 @@ public class CallController {
 
     private void checkAuth(UserTypeCode userTypeCode, HttpServletRequest request) {
         String token = authService.getTokenFromRequest(request);
-        String userType = authService.getUserTypeFromToken(token);
+        UserTypeCode userType = authService.getUserTypeFromToken(token);
 
         switch (userTypeCode) {
             case PASSENGER:
-                if (!userTypeCode.equals(UserTypeCode.of(userType))) {
+                if (!userTypeCode.equals(userType)) {
                     throw new CustomException(ONLY_PASSENGER_REQUEST);
                 }
                 break;
             case DRIVER:
-                if (!userTypeCode.equals(UserTypeCode.of(userType))) {
+                if (!userTypeCode.equals(userType)) {
                     throw new CustomException(ONLY_DRIVER_REQUEST);
                 }
                 break;

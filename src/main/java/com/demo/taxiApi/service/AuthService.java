@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.demo.taxiApi.domain.User;
+import com.demo.taxiApi.domain.UserTypeCode;
 import com.demo.taxiApi.exception.CustomException;
 
 import io.jsonwebtoken.Claims;
@@ -55,8 +56,8 @@ public class AuthService {
         return getUserFromToken(jwt, "email");
     }
 
-    public String getUserTypeFromToken(String jwt) {
-        return getUserFromToken(jwt, "userType");
+    public UserTypeCode getUserTypeFromToken(String jwt) {
+        return UserTypeCode.of(getUserFromToken(jwt, "userType"));
     }
 
     private String getUserFromToken(String jwt, String type) {
