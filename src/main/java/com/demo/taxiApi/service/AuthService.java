@@ -52,6 +52,14 @@ public class AuthService {
     }
 
     public String getEmailFromToken(String jwt) {
+        return getUserFromToken(jwt, "email");
+    }
+
+    public String getUserTypeFromToken(String jwt) {
+        return getUserFromToken(jwt, "userType");
+    }
+
+    private String getUserFromToken(String jwt, String type) {
         if (StringUtils.isEmpty(jwt)) {
             throw new CustomException(NOT_FOUND_DATA);
         }
@@ -65,7 +73,7 @@ public class AuthService {
             log.info("email : {}, userType: {}, desc :{}",
                 claims.get("email"), claims.get("userType"), claims.get("desc"));
 
-            return (String) claims.get("email");
+            return (String) claims.get(type);
         } catch (ExpiredJwtException exception) {
             log.info("만료된 토큰");
         } catch (JwtException exception) {
