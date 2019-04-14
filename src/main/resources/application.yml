@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: local
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jpa:
+    generate-ddl: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+  security:
+    user:
+      name: admin
+      password: test
+server:
+  port: 9876
