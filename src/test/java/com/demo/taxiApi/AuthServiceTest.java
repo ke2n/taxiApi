@@ -11,8 +11,8 @@ import com.demo.taxiApi.exception.CustomException;
 import com.demo.taxiApi.service.AuthService;
 import com.nitorcreations.junit.runners.NestedRunner;
 
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_DATA;
-import static com.demo.taxiApi.exception.ExceptionCode.UNAUTHORIZED_REQUEST;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
+import static com.demo.taxiApi.common.AnswerCode.UNAUTHORIZED_REQUEST;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;

@@ -1,6 +1,9 @@
 package com.demo.taxiApi.service;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +14,13 @@ import com.demo.taxiApi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_DATA;
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_USER;
-import static com.demo.taxiApi.exception.ExceptionCode.SIGNUP_EXIST_USERNAME;
-import static com.demo.taxiApi.exception.ExceptionCode.SIGNUP_REQUIRED_EMAIL;
-import static com.demo.taxiApi.exception.ExceptionCode.SIGNUP_REQUIRED_PASSWORD;
-import static com.demo.taxiApi.exception.ExceptionCode.SIGNUP_REQUIRED_USERTYPE;
+import static com.demo.taxiApi.common.AnswerCode.INVALID_EMAIL_FORMAT;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_USER;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_USERNAME;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_EMAIL;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_PASSWORD;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_USERTYPE;
 
 /**
  * @author yunsung Kim
@@ -28,6 +32,7 @@ public class UserService {
 
     private final UserRepository repository;
 
+    @Transactional
     public User signin(User user) {
 
         if (user == null
@@ -46,6 +51,7 @@ public class UserService {
         return resultUser;
     }
 
+    @Transactional
     public User signup(User user) {
 
         if (user == null) {
@@ -53,6 +59,9 @@ public class UserService {
         }
         if (StringUtils.isEmpty(user.getEmail())) {
             throw new CustomException(SIGNUP_REQUIRED_EMAIL);
+        }
+        if (!EmailValidator.getInstance().isValid(user.getEmail())) {
+            throw new CustomException(INVALID_EMAIL_FORMAT);
         }
         if (StringUtils.isEmpty(user.getPassword())) {
             throw new CustomException(SIGNUP_REQUIRED_PASSWORD);
@@ -73,6 +82,7 @@ public class UserService {
         return repository.save(newUser);
     }
 
+    @Transactional
     public User findByEmail(String email) {
         if (StringUtils.isEmpty(email)) {
             throw new CustomException(NOT_FOUND_USER);

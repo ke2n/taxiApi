@@ -24,9 +24,9 @@ import com.demo.taxiApi.service.AuthService;
 import com.demo.taxiApi.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_DATA;
-import static com.demo.taxiApi.exception.ExceptionCode.SIGNUP_EXIST_USERNAME;
-import static com.demo.taxiApi.exception.ExceptionCode.UNAUTHORIZED_REQUEST;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_USERNAME;
+import static com.demo.taxiApi.common.AnswerCode.UNAUTHORIZED_REQUEST;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

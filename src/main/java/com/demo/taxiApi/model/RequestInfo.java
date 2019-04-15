@@ -3,8 +3,10 @@ package com.demo.taxiApi.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author yunsung Kim
@@ -12,7 +14,11 @@ import lombok.Getter;
 @JsonInclude(Include.NON_NULL)
 @Builder
 @Getter
-public class AuthInfo {
+@NoArgsConstructor
+@AllArgsConstructor
+public class RequestInfo {
 
-    private String accessToken;
+    private Long id;
+
+    private String address;
 }

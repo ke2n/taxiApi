@@ -22,8 +22,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_DATA;
-import static com.demo.taxiApi.exception.ExceptionCode.UNAUTHORIZED_REQUEST;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
+import static com.demo.taxiApi.common.AnswerCode.UNAUTHORIZED_REQUEST;
 
 
 /**

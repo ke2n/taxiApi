@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 import com.demo.taxiApi.exception.CustomException;
 
-import static com.demo.taxiApi.exception.ExceptionCode.NOT_FOUND_USERTYPE;
+import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_USERTYPE;
 
+/**
+ * @author yunsung Kim
+ */
 public enum UserTypeCode {
     DRIVER,
     PASSENGER;

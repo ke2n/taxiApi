@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.taxiApi.exception.CustomException;
-import com.demo.taxiApi.exception.ExceptionCode;
 import com.demo.taxiApi.model.DefaultInfo;
 
 
@@ -31,7 +30,7 @@ public class ExceptionHandling {
     @ExceptionHandler
     protected DefaultInfo handleError(Exception e) {
         return DefaultInfo.builder()
-            .code(ExceptionCode.FAIL.name())
+            .code(AnswerCode.FAIL.name())
             .message(e.getMessage())
             .build();
     }

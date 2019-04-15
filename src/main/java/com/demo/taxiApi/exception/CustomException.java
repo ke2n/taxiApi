@@ -1,6 +1,8 @@
 package com.demo.taxiApi.exception;
 
 
+import com.demo.taxiApi.common.AnswerCode;
+
 import lombok.Getter;
 
 /**
@@ -9,14 +11,14 @@ import lombok.Getter;
 @Getter
 public class CustomException extends RuntimeException {
 
-    private ExceptionCode resultCode;
+    private AnswerCode resultCode;
 
-    public CustomException(ExceptionCode resultCode) {
+    public CustomException(AnswerCode resultCode) {
         super(resultCode.getMsg());
         this.resultCode = resultCode;
     }
 
-    public CustomException(ExceptionCode resultCode, String additionalString) {
+    public CustomException(AnswerCode resultCode, String additionalString) {
         super(resultCode.getMsg() + additionalString);
         this.resultCode = resultCode;
     }

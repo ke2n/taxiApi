@@ -1,6 +1,9 @@
 package com.demo.taxiApi.model;
 
-import com.demo.taxiApi.common.AnswerCode;
+import java.util.Date;
+
+import com.demo.taxiApi.domain.CallStatusCode;
+import com.demo.taxiApi.domain.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -15,16 +18,21 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class DefaultInfo {
+@NoArgsConstructor
+public class CallInfo {
 
-    private String code;
+    private Long id;
 
-    private String message;
+    private User passenger;
 
-    public DefaultInfo(AnswerCode code) {
-        this.code = code.name();
-        this.message = code.getMsg();
-    }
+    private User driver;
+
+    private String address;
+
+    private CallStatusCode status;
+
+    private Date requestDate;
+
+    private Date assignDate;
 }

@@ -2,7 +2,6 @@ package com.demo.taxiApi.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +12,19 @@ import com.demo.taxiApi.model.AuthInfo;
 import com.demo.taxiApi.service.AuthService;
 import com.demo.taxiApi.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * @author yunsung Kim
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/signin")
     public AuthInfo signin(@RequestBody User user) {

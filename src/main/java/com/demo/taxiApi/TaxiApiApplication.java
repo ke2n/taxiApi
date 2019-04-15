@@ -3,6 +3,9 @@ package com.demo.taxiApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author yunsung Kim
+ */
 @SpringBootApplication
 public class TaxiApiApplication {
 
