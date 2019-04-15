@@ -22,7 +22,7 @@ public enum AnswerCode {
     SIGNUP_REQUIRED_EMAIL("등록할 이메일을 입력해 주세요."),
     SIGNUP_REQUIRED_PASSWORD("등록할 패스워드를 입력해 주세요."),
     SIGNUP_REQUIRED_USERTYPE("유저의 타입(승객/기사)을 입력해 주세요."),
-    SIGNUP_EXIST_USERNAME("이미 등록된 유저이름 입니다."),
+    SIGNUP_EXIST_EMAIL("이미 등록된 이메일 입니다."),
 
     ALREADY_ASSIGNED("이미 할당된 배차입니다."),
 

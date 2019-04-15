@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import static com.demo.taxiApi.common.AnswerCode.INVALID_EMAIL_FORMAT;
 import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
 import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_USER;
-import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_USERNAME;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_EMAIL;
 import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_EMAIL;
 import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_PASSWORD;
 import static com.demo.taxiApi.common.AnswerCode.SIGNUP_REQUIRED_USERTYPE;
@@ -70,7 +70,7 @@ public class UserService {
             throw new CustomException(SIGNUP_REQUIRED_USERTYPE);
         }
         if (repository.findByEmail(user.getEmail()).isPresent()) {
-            throw new CustomException(SIGNUP_EXIST_USERNAME);
+            throw new CustomException(SIGNUP_EXIST_EMAIL);
         }
 
         User newUser = User.builder()

@@ -25,7 +25,7 @@ import com.demo.taxiApi.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static com.demo.taxiApi.common.AnswerCode.NOT_FOUND_DATA;
-import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_USERNAME;
+import static com.demo.taxiApi.common.AnswerCode.SIGNUP_EXIST_EMAIL;
 import static com.demo.taxiApi.common.AnswerCode.UNAUTHORIZED_REQUEST;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -107,11 +107,11 @@ public class AuthControllerTest {
     @Test
     public void 회원가입__중복아이디_실패() throws Exception {
         given(userService.signup(any(User.class))).willReturn(dbUser);
-        given(service.createUserKey(any(User.class))).willThrow(new CustomException(SIGNUP_EXIST_USERNAME));
+        given(service.createUserKey(any(User.class))).willThrow(new CustomException(SIGNUP_EXIST_EMAIL));
 
         defaultResultActions("/signup", requestUser)
             .andExpect(status().isBadRequest())
-            .andExpect(jsonPath("@.code").value(SIGNUP_EXIST_USERNAME.name()));
+            .andExpect(jsonPath("@.code").value(SIGNUP_EXIST_EMAIL.name()));
     }
 
     @Test

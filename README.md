@@ -57,7 +57,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
     "userType": "[PASSENGER or DRIVER]"
 }
 ```
-**Body example** 3개의 프로퍼티로 구성
+**Body example** 3개의 필수 입력 프로퍼티로 구성
 
 ```json
 {
@@ -73,6 +73,64 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 {
     "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IlBBU1NFTkdFUiIsImV4cCI6MTU1NTMzMTI1MiwiZW1haWwiOiJzdmxhZGFjb0BkLmNvbSIsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb1RheGlBcGnsl5DshJwg67Cc7ZaJIn0.LuYtm-gdFIeAAzA0ABRHmH3sOxKp5ennT_uUqnzGvPw"
 }
+```
+
+### Error Response
+
+**Condition** : 이메일 형식이 잘못 되었을때.
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "INVALID_EMAIL_FORMAT",
+   "message": "잘못된 이메일 형식입니다."
+}
+```
+
+#### Or
+
+**Condition** : 3개의 필수 입력중 한개라도 누락 되었을때.
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "SIGNUP_REQUIRED_EMAIL",
+   "message": "등록할 이메일을 입력해 주세요."
+}
+
+or
+
+{
+   "code": "SIGNUP_REQUIRED_PASSWORD",
+   "message": "등록할 패스워드를 입력해 주세요."
+}
+
+or
+
+{
+   "code": "SIGNUP_REQUIRED_USERTYPE",
+   "message": "유저의 타입(승객/기사)을 입력해 주세요."
+}
+
+```
+
+#### Or
+
+**Condition** : 이미 등록된 이메일일때.
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "SIGNUP_EXIST_EMAIL",
+   "message": "이미 등록된 이메일 입니다."
+}
+
 ```
 
 ## POST /api/auth/signin
