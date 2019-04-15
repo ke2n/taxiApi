@@ -31,6 +31,11 @@ mvn package (또는 ./mvnw package)
 서버 기동(9876 port)
 java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ```
+
+## DB Table Specification
+![ERD](erd.jpg)
+
+
 ## API Specification
 ### 인증 관련
 - [POST /api/auth/signup](#post-apiauthsignup)
