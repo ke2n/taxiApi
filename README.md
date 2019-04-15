@@ -48,7 +48,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ### ERD
 ![ERD](erd.jpg)
 
-### Users Table
+### Users Table - 승객 / 기사 테이블
 | name        | key       | type  | desc |
 | ------------- |-------------| -----|----|
 | id      | primary key | bigint |ID |
@@ -56,7 +56,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 | password |      | varchar(255) |비밀번호 |
 | user_type |      | varchar(255) |유저 타입 (PASSENGER / DRIVER)|
 
-### Call Table
+### Call Table - 배차 정보 테이블
 | name        | key           | type  | desc |
 | ------------- |-------------| -----|----|
 | id      | primary key | bigint |ID|
