@@ -23,7 +23,7 @@
 - test : 테스트 수행 클래스
     
 ## 빌드 및 실행방법
-```javascript
+```
 빌드 수행 
 cd ${RootPath} (ex) taxiApi)
 mvn package (또는 ./mvnw package)
@@ -33,9 +33,14 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ```
 ## API Specification
 ### 인증 관련
-  - [POST /api/auth/signup](#post-apiauthsignup)
-  - [POST /api/auth/signin](#post-apiauthsignin)
-  - [POST /api/auth/refresh](#post-apiauthrefresh)
+- [POST /api/auth/signup](#post-apiauthsignup)
+- [POST /api/auth/signin](#post-apiauthsignin)
+- [POST /api/auth/refresh](#post-apiauthrefresh)
+  
+### 배차 수행 관련
+- [GET /api/call/list](#get-apicalllist)
+- [POST /api/call/request](#post-apicallrequest)
+- [GET /api/call/assign/[id]](#get-apicallassign)
   
 ## POST /api/auth/signup
 회원가입 수행
@@ -72,3 +77,6 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 
 ## POST /api/auth/signin
 ## POST /api/auth/refresh
+## GET /api/call/list
+## POST /api/call/request
+## GET /api/call/assign
