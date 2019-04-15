@@ -375,6 +375,20 @@ curl -X POST \
 
 ### Error Response
 
+**Condition** : Token상의 UserType이 PASSENGER가 아닐 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "REQUEST_ONLY_PASSENGER",
+   "message": "승객만 요청할 수 있는 기능 입니다."
+}
+```
+
+#### Or
+
 **Condition** : 필수 입력값이 누락되었거나 100자를 초과하였을 경우
 
 **Code** : `400 Bad Request`
@@ -419,6 +433,7 @@ curl -X POST \
 }
 ```
 ### Success Responses
+
 **Code** : `200 OK`
 
 ```json
@@ -429,8 +444,21 @@ curl -X POST \
 ```
 
 ### Error Response
+**Condition** : Token상의 UserType이 DRIVER가 아닐 경우
 
-**Condition** : 필수 입력값이 누락되였을 경우
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "REQUEST_ONLY_DRIVER",
+   "message": "기사만 요청할 수 있는 기능 입니다."
+}
+```
+
+#### Or
+
+**Condition** : 필수 입력값이 누락되었을 경우
 
 **Code** : `400 Bad Request`
 
