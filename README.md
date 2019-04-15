@@ -38,7 +38,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 - [POST /api/auth/refresh](#post-apiauthrefresh)
   
 ### 배차 수행 관련
-- [GET /api/call/list](#get-apicalllist)
+- [GET /api/call/list?page=[page]&size=[size]&sort=[sort]](#get-apicalllist)
 - [POST /api/call/request](#post-apicallrequest)
 - [GET /api/call/assign/[id]](#get-apicallassign)
   
@@ -186,7 +186,7 @@ curl -X POST \
 
 ### Error Response
 
-**Condition** : 가입한 이메일이 없거나 비밀번호가 틀렸을때.
+**Condition** : 가입한 이메일이 없거나 비밀번호가 일치하지 않을때.
 
 **Code** : `400 Bad Request`
 
@@ -199,6 +199,114 @@ curl -X POST \
 ```
 
 ## POST /api/auth/refresh
+토큰 갱신(재발급)
+```
+curl -X POST \
+  http://localhost:9876/api/auth/refresh \
+  -H 'Authorization: Bearer JWT_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+```
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+### Success Responses
+**Code** : `200 OK`
+
+```json
+{
+    "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IlBBU1NFTkdFUiIsImV4cCI6MTU1NTMzMTI1MiwiZW1haWwiOiJzdmxhZGFjb0BkLmNvbSIsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb1RheGlBcGnsl5DshJwg67Cc7ZaJIn0.LuYtm-gdFIeAAzA0ABRHmH3sOxKp5ennT_uUqnzGvPw"
+}
+```
+
+### Error Response
+
+**Condition** : 헤더(Authorization)에 JWT_TOKEN이 없거나 만료 변조된 토큰일 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "UNAUTHORIZED_REQUEST",
+   "message": "허가되지않은 요청입니다."
+}
+```
+
 ## GET /api/call/list
+전체 배차 목록 조회
+```
+curl -X GET \
+  http://localhost:9876/api/call/list \
+  -H 'Authorization: Bearer JWT_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+```
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Parameter constraints**
+
+```
+page=[default value 0]
+size=[default value 50]
+sort=[default value 'id, DESC']
+```
+**Parameter example** 3개의 선택 입력 파라메터로 구성
+
+```
+page=0&size=50&sort=id, DESC
+```
+
+### Success Responses
+**Code** : `200 OK`
+
+```json
+[
+    {
+        "id": 6,
+        "passenger": {
+            "email": "svlada1@gmail.com",
+            "userType": "PASSENGER"
+        },
+        "address": "서울시 도봉구 XX동",
+        "status": "REQUESTED",
+        "requestDate": "2019-04-15T12:17:34.236+0000"
+    },
+    {
+        "id": 4,
+        "passenger": {
+            "email": "svlada1@gmail.com",
+            "userType": "PASSENGER"
+        },
+        "driver": {
+            "email": "svlada11@gmail.com",
+            "userType": "DRIVER"
+        },
+        "address": "수원시 XX동",
+        "status": "ASSIGNED",
+        "requestDate": "2019-04-15T12:17:32.070+0000",
+        "assignDate": "2019-04-15T12:18:44.446+0000"
+    }
+]
+```
+
+### Error Response
+
+**Condition** : 헤더(Authorization)에 JWT_TOKEN이 없거나 만료 변조된 토큰일 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "UNAUTHORIZED_REQUEST",
+   "message": "허가되지않은 요청입니다."
+}
+```
 ## POST /api/call/request
 ## GET /api/call/assign
