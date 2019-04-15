@@ -141,10 +141,63 @@ curl -X POST \
    "code": "SIGNUP_EXIST_EMAIL",
    "message": "이미 등록된 이메일 입니다."
 }
-
 ```
 
 ## POST /api/auth/signin
+로그인 수행
+```
+curl -X POST \
+  http://localhost:9876/api/auth/signin \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+    "email": "test@test.com",
+    "password": "test1234"
+}'
+```
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Body constraints**
+
+```json
+{
+    "email": "[email format]"
+}
+```
+**Body example** 2개의 필수 입력 프로퍼티로 구성
+
+```json
+{
+    "email": "test@test.com",
+    "password": "test1234"
+}
+```
+### Success Responses
+**Code** : `200 OK`
+
+```json
+{
+    "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IlBBU1NFTkdFUiIsImV4cCI6MTU1NTMzMTI1MiwiZW1haWwiOiJzdmxhZGFjb0BkLmNvbSIsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb1RheGlBcGnsl5DshJwg67Cc7ZaJIn0.LuYtm-gdFIeAAzA0ABRHmH3sOxKp5ennT_uUqnzGvPw"
+}
+```
+
+### Error Response
+
+**Condition** : 가입한 이메일이 없거나 비밀번호가 틀렸을때.
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "NOT_FOUND_USER",
+   "message": "유저정보가 존재하지 않습니다."
+}
+```
+
 ## POST /api/auth/refresh
 ## GET /api/call/list
 ## POST /api/call/request
