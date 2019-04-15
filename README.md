@@ -33,13 +33,27 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ```
 
 ## DB Table Specification
+### ERD
 ![ERD](erd.jpg)
+
+### Users Table
 | name        | key           | type  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | id      | primary key | bigint |
 | email     |      | varchar(255) |
 | password |      | varchar(255) |
 | user_type |      | varchar(255) |
+
+### Call Table
+| name        | key           | type  |
+| ------------- |-------------| -----|
+| id      | primary key | bigint |
+| passenger_id     | foreign key     | bigint |
+| driver_id |foreign key     | bigint |
+| address |      | varchar(255) |
+| status |      | varchar(255) |
+| request_date |      | timestamp |
+| assign_date |      | timestamp |
 
 ## API Specification
 ### 인증 관련
