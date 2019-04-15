@@ -34,7 +34,12 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 
 ## DB Table Specification
 ![ERD](erd.jpg)
-
+| name        | key           | type  |
+| ------------- |:-------------:| -----:|
+| id      | primary key | bigint |
+| email     |      | varchar(255) |
+| password |      | varchar(255) |
+| user_type |      | varchar(255) |
 
 ## API Specification
 ### 인증 관련
