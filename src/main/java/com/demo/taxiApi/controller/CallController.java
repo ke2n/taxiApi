@@ -58,7 +58,7 @@ public class CallController {
         return new DefaultInfo(SUCCESS);
     }
 
-    @GetMapping("/assign")
+    @PostMapping("/assign")
     public DefaultInfo assign(@RequestBody RequestInfo requestInfo, HttpServletRequest request) {
         User user = checkAuthAndGetUser(UserTypeCode.DRIVER, request);
 

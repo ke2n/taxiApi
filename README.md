@@ -40,7 +40,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ### 배차 수행 관련
 - [GET /api/call/list?page=[page]&size=[size]&sort=[sort]](#get-apicalllist)
 - [POST /api/call/request](#post-apicallrequest)
-- [GET /api/call/assign/[id]](#get-apicallassign)
+- [POST /api/call/assign](#post-apicallassign)
   
 ## POST /api/auth/signup
 회원가입 수행
@@ -309,4 +309,139 @@ page=0&size=50&sort=id, DESC
 }
 ```
 ## POST /api/call/request
-## GET /api/call/assign
+택시 배차 요청
+```
+curl -X POST \
+  http://localhost:9876/api/call/request \
+  -H 'Authorization: Bearer JWT_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+  "address": "서울시 중구 을지로 XX"
+}'
+```
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+**Body constraints**
+
+```json
+{
+    "address": "[100자 이하]"
+}
+```
+**Body example** 1개의 필수 입력 프로퍼티로 구성
+
+```json
+{
+    "address": "서울시 중구 을지로 XX"
+}
+```
+### Success Responses
+**Code** : `200 OK`
+
+```json
+{
+    "code": "SUCCESS",
+    "message": "요청이 정상적으로 완료 되었습니다."
+}
+```
+
+### Error Response
+
+**Condition** : 필수 입력값이 누락되었거나 100자를 초과하였을 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "ERROR_ADDRESS",
+   "message": "주소값이 없거나 100자를 넘었습니다."
+}
+```
+
+## POST /api/call/assign
+기사 배차
+```
+curl -X POST \
+  http://localhost:9876/api/call/assign \
+  -H 'Authorization: Bearer JWT_TOKEN' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+  "id": 10
+}'
+```
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+**Body constraints**
+
+```json
+{
+    "id": "[NUMBER format]"
+}
+```
+**Body example** 1개의 필수 입력 프로퍼티로 구성
+
+```json
+{
+    "id": 10
+}
+```
+### Success Responses
+**Code** : `200 OK`
+
+```json
+{
+    "code": "SUCCESS",
+    "message": "요청이 정상적으로 완료 되었습니다."
+}
+```
+
+### Error Response
+
+**Condition** : 필수 입력값이 누락되였을 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "ERROR_ID",
+   "message": "ID값이 없습니다."
+}
+```
+
+#### Or
+
+**Condition** : 존재하지 않는 ID일 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "NOT_FOUND_CALL_ID",
+   "message": "존재 하지 않는 ID 입니다."
+}
+```
+
+#### Or
+
+**Condition** : 이미 할당된 배차일 경우
+
+**Code** : `400 Bad Request`
+
+**Content** : 
+```json
+{
+   "code": "ALREADY_ASSIGNED",
+   "message": "이미 할당된 배차입니다."
+}
+```
