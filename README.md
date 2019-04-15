@@ -44,6 +44,17 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
   
 ## POST /api/auth/signup
 회원가입 수행
+```
+curl -X POST \
+  http://localhost:9876/api/auth/signup \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+  "email": "test@email.com",
+  "password": "test1234",
+  "userType": "PASSENGER"
+}'
+```
 
 **Method** : `POST`
 
@@ -102,14 +113,14 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
    "message": "등록할 이메일을 입력해 주세요."
 }
 
-or
+// or
 
 {
    "code": "SIGNUP_REQUIRED_PASSWORD",
    "message": "등록할 패스워드를 입력해 주세요."
 }
 
-or
+// or
 
 {
    "code": "SIGNUP_REQUIRED_USERTYPE",
