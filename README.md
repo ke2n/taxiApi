@@ -25,19 +25,19 @@
 ## 빌드 및 실행방법
 ```javascript
 빌드 수행 
-cd ${RootPath} (ex. taxiApi)
+cd ${RootPath} (ex) taxiApi)
 mvn package (또는 ./mvnw package)
 
 서버 기동(9876 port)
 java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ```
-### API Specification
-#### 인증 관련
+## API Specification
+### 인증 관련
   - [POST /api/auth/signup](#post-apiauthsignup)
   - [POST /api/auth/signin](#post-apiauthsignin)
   - [POST /api/auth/refresh](#post-apiauthrefresh)
   
-#### POST /api/auth/signup
+### POST /api/auth/signup
 회원가입 수행
 
 **Method** : `POST`
@@ -61,7 +61,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
     "userType": "PASSENGER"
 }
 ```
-##### Success Responses
+#### Success Responses
 **Code** : `200 OK`
 
 ```json
@@ -70,5 +70,5 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 }
 ```
 
-#### POST /api/auth/signin
-#### POST /api/auth/refresh
+### POST /api/auth/signin
+### POST /api/auth/refresh
