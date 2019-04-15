@@ -24,6 +24,7 @@
 
 ### 구현 전략
 - JWT로 API의 인증을 관리하는 구조로 구현하였습니다.
+  - 회원가입시 password는 jbcrypt해시로 암호화되어 저장.
   - 회원가입/로그인 성공시 email과 userType(Role)정보가 포함되어있는 토큰(JWT) 출력.
   - 토큰 만료일은 60분으로 만료시 API접근이 불가하며 사전에 토큰갱신을 통해 새로운 만료일의 토큰으로 갱신필요.
   - 발급받은 토큰을 Header에 추가하여 호출하여야 인증 완료.
@@ -48,23 +49,23 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ![ERD](erd.jpg)
 
 ### Users Table
-| name        | key           | type  |
-| ------------- |-------------| -----|
-| id      | primary key | bigint |
-| email     |      | varchar(255) |
-| password |      | varchar(255) |
-| user_type |      | varchar(255) |
+| name        | key       | type  | desc |
+| ------------- |-------------| -----|----|
+| id      | primary key | bigint |ID |
+| email     |      | varchar(255) |이메일 |
+| password |      | varchar(255) |비밀번호 |
+| user_type |      | varchar(255) |유저 타입 (PASSENGER / DRIVER)|
 
 ### Call Table
-| name        | key           | type  |
-| ------------- |-------------| -----|
-| id      | primary key | bigint |
-| passenger_id     | foreign key     | bigint |
-| driver_id |foreign key     | bigint |
-| address |      | varchar(255) |
-| status |      | varchar(255) |
-| request_date |      | timestamp |
-| assign_date |      | timestamp |
+| name        | key           | type  | desc |
+| ------------- |-------------| -----|----|
+| id      | primary key | bigint |ID|
+| passenger_id     | foreign key     | bigint |승객ID|
+| driver_id |foreign key     | bigint |기사ID|
+| address |      | varchar(255) |요청 주소|
+| status |      | varchar(255) |배차 상태 (REQUESTED / ASSIGNED)|
+| request_date |      | timestamp |배차 요청 시간|
+| assign_date |      | timestamp |배차 완료 시간|
 
 ## API Specification
 ### 인증 관련
