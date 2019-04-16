@@ -51,7 +51,6 @@ public class UserService {
         return resultUser;
     }
 
-    @Transactional
     public User signup(User user) {
 
         if (user == null) {

@@ -6,13 +6,13 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
-  h2:
-    console:
-      enabled: true
-      path: /console
-  security:
-    user:
-      name: admin
-      password: test
+    database-platform: com.demo.taxiApi.common.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:taxiApiDB
+    username: sa
+    password: sa
 server:
   port: 9876

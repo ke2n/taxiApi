@@ -4,7 +4,7 @@
 `SpringBoot 2.1.4` `JDK8`
 
 ### 사용 라이브러리
-`JPA` `H2` `lombok` `jbcrypt` `JWT`
+`JPA` `sqlite-jdbc` `lombok` `jbcrypt` `JWT`
 
 ### 디렉토리 구조 세부설명
 - com.demo.taxiApi
@@ -37,7 +37,7 @@
 ## 빌드 및 실행방법
 ```
 빌드 수행 
-cd ${RootPath} (ex) taxiApi)
+cd taxiApi
 mvn package (또는 ./mvnw package)
 
 서버 기동(9876 port)
@@ -46,7 +46,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 
 ## DB Table Specification
 ### ERD
-![ERD](erd.jpg)
+![ERD](erd.png)
 
 ### Users Table - 승객 / 기사 테이블
 | name        | key       | type  | desc |
