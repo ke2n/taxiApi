@@ -1,5 +1,11 @@
 # 택시 배차 앱 API.
 
+## Contents
+- [개발 프레임워크](#개발-프레임워크)
+- [빌드 및 실행방법](#빌드-및-실행방법)
+- [DB Table Specification](#DB-Table-Specification)
+- [API Specification](#API-Specification)
+
 ## 개발 프레임워크
 `SpringBoot 2.1.4` `JDK8`
 
@@ -79,7 +85,7 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 - [POST /api/call/assign](#post-apicallassign)
 
 
-**Swagger UI 참고** http://localhost:9876/swagger-ui.html
+**Swagger UI 참고 (서버기동후 실행)** http://localhost:9876/swagger-ui.html
   
 ## POST /api/auth/signup
 회원가입 수행
