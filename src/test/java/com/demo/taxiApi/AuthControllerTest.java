@@ -20,6 +20,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.demo.taxiApi.controller.AuthController;
 import com.demo.taxiApi.domain.User;
 import com.demo.taxiApi.exception.CustomException;
+import com.demo.taxiApi.interceptor.JwtInterceptor;
+import com.demo.taxiApi.interceptor.WebConfig;
 import com.demo.taxiApi.service.AuthService;
 import com.demo.taxiApi.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,11 +70,11 @@ public class AuthControllerTest {
     @MockBean
     private UserService userService;
 
-//    @MockBean
-//    private JwtInterceptor jwtInterceptor;
-//
-//    @MockBean
-//    private WebConfig webConfig;
+    @MockBean
+    private JwtInterceptor jwtInterceptor;
+
+    @MockBean
+    private WebConfig webConfig;
 
     @Before
     public void setup() throws Exception {

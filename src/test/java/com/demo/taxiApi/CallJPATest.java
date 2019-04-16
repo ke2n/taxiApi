@@ -22,6 +22,9 @@ import com.demo.taxiApi.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author yunsung Kim
  */
@@ -37,7 +40,7 @@ public class CallJPATest {
     private UserRepository userRepository;
 
     @Test
-    public void test() throws Exception {
+    public void jpaTest() throws Exception {
         User passenger = User.builder()
             .email("a@test.com")
             .userType(UserTypeCode.PASSENGER)
@@ -52,15 +55,16 @@ public class CallJPATest {
         userRepository.save(driver);
 
         //List<User> userList = userRepository.findAll();
+        Call savedCall = null;
 
-        Call call = Call.builder()
-            .address("test")
-            .passenger(passenger)
-            .status(CallStatusCode.ASSIGNED)
-            .requestDate(new Date())
-            .build();
-
-        Call savedCall = callRepository.save(call);
+        for (int i=0; i < 100; i++) {
+            savedCall = callRepository.save(Call.builder()
+                .address("test")
+                .passenger(passenger)
+                .status(CallStatusCode.REQUESTED)
+                .requestDate(new Date())
+                .build());
+        }
 
         savedCall.setDriver(driver);
         savedCall.setStatus(CallStatusCode.ASSIGNED);
@@ -68,16 +72,19 @@ public class CallJPATest {
 
         callRepository.save(savedCall);
 
-        callRepository.flush();
-
         Sort sort = Sort.by(Sort.Order.desc("id"));
-        Pageable pageable = PageRequest.of(0, 1, sort);
+        Pageable pageable = PageRequest.of(0, 10, sort);
         Page<Call> callList = callRepository.findAll(pageable);
         List<Call> calls = callList.getContent();
 
-        log.info("test - {}", calls);
-        log.info("test - {}", calls.get(0).getPassenger());
-        log.info("test - {}", calls.get(0).getDriver());
+        for(Call c : calls) {
+            log.info("c - {}", c);
+            log.info("getEmail - {}", c.getPassenger().getEmail());
+        }
+
+        assertTrue(calls.size() > 0);
+        assertEquals(CallStatusCode.ASSIGNED, calls.get(0).getStatus());
+        assertEquals(CallStatusCode.REQUESTED, calls.get(1).getStatus());
     }
 
 }

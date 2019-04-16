@@ -36,11 +36,11 @@
     
 ## 빌드 및 실행방법
 ```
-빌드 수행 
+// 빌드 수행 
 cd taxiApi
 mvn package (또는 ./mvnw package)
 
-서버 기동(9876 port)
+// 서버 기동(9876 port)
 java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 ```
 
@@ -77,6 +77,9 @@ java -jar target/taxiApi-0.0.1-SNAPSHOT.jar
 - [GET /api/call/list?page=[page]&size=[size]&sort=[sort]](#get-apicalllist)
 - [POST /api/call/request](#post-apicallrequest)
 - [POST /api/call/assign](#post-apicallassign)
+
+
+**Swagger UI 참고** http://localhost:9876/swagger-ui.html
   
 ## POST /api/auth/signup
 회원가입 수행
@@ -242,6 +245,10 @@ curl -X POST \
   -H 'Authorization: Bearer JWT_TOKEN' \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache'
+  
+ 
+// SAMPLE_JWT_TOKEN
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdFVzZXIiLCJleHAiOjE4Njg5NDYzMjcsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb0FwaeyXkOyEnCDrsJztlokifQ.r8RLJgRVvUyf1TecScqJMQPF_JMTF0vYFHDkE9_uPjI
 ```
 
 **Method** : `POST`
@@ -279,6 +286,10 @@ curl -X GET \
   -H 'Authorization: Bearer JWT_TOKEN' \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache'
+  
+ 
+// SAMPLE_JWT_TOKEN
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdFVzZXIiLCJleHAiOjE4Njg5NDYzMjcsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb0FwaeyXkOyEnCDrsJztlokifQ.r8RLJgRVvUyf1TecScqJMQPF_JMTF0vYFHDkE9_uPjI
 ```
 
 **Method** : `GET`
@@ -355,6 +366,10 @@ curl -X POST \
   -d '{
   "address": "서울시 중구 을지로 XX"
 }'
+  
+ 
+// SAMPLE_JWT_TOKEN
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdFVzZXIiLCJleHAiOjE4Njg5NDYzMjcsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb0FwaeyXkOyEnCDrsJztlokifQ.r8RLJgRVvUyf1TecScqJMQPF_JMTF0vYFHDkE9_uPjI
 ```
 
 **Method** : `POST`
@@ -424,6 +439,10 @@ curl -X POST \
   -d '{
   "id": 10
 }'
+  
+ 
+// SAMPLE_JWT_TOKEN
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdFVzZXIiLCJleHAiOjE4Njg5NDYzMjcsImRlc2MiOiLthYzsiqTtirjsmqkgRGVtb0FwaeyXkOyEnCDrsJztlokifQ.r8RLJgRVvUyf1TecScqJMQPF_JMTF0vYFHDkE9_uPjI
 ```
 
 **Method** : `POST`
